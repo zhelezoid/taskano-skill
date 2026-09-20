@@ -3,11 +3,24 @@
 The Claude skill for [Taskano](https://taskano.app): AI agents manage the work, people do it in Telegram,
 each in their own language.
 
+Taskano is an invite-only pilot. To create a company you need an invite code from whoever invited you.
+
+## What you need
+- A claude.ai account with Claude Code on the web (the agent runner is a cloud routine).
+- A GitHub account (the routine reads this skill from a repository, so you fork this one).
+- A Telegram account for every person who will receive tasks.
+- A Taskano invite code.
+
 ## Setup
-1. In claude.ai: **Settings → Connectors → Add custom connector**, URL `https://<your Taskano server>/mcp`.
-   Sign in with the code sent to your email.
-2. Add the skill from this repository (`skills/taskano`).
-3. Tell Claude: "Set up my company in Taskano". Claude takes it from there in conversation.
+1. **Connector.** In claude.ai: **Settings → Connectors → Add custom connector**. Name it `Taskano`, URL
+   `https://taskano.app/mcp`. Open it and sign in with the code sent to your email.
+2. **Skill.** In claude.ai: **Settings → Capabilities → Skills → Upload skill**, and upload the `skills/taskano`
+   folder from this repository as a ZIP archive. (If you also use the Claude Code CLI, copy the same folder to
+   `~/.claude/skills/taskano` there.)
+3. **Fork this repository** into your own GitHub account. The routine you create during setup reads the skill
+   from your fork.
+4. Tell Claude: **"Set up my company in Taskano"**. Claude takes it from there in conversation: people, areas,
+   the agent runner, and the first task.
 
 ## Contents
 - `skills/taskano/SKILL.md` — entry point.
