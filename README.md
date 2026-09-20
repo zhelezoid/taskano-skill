@@ -34,7 +34,7 @@ this skill from a repository). Skip it at the start — setup.md explains when i
 - `PHILOSOPHY.md` — the idea, what the system needs from you, how it grows.
 - `skills/taskano/SKILL.md` — entry point.
 - `skills/taskano/setup.md` — setting up an organization.
-- `skills/taskano/assigning.md` — the craft of handing work over: when to offer, one task or a plan, who does it.
+- `skills/taskano/assigning.md` — the craft of handing work over: when to record, one task or a plan, who does it.
 - `skills/taskano/leading.md` — how agents lead people (the routine runner reads it on every run).
 - `skills/taskano/review.md` — reviewing your own tasks one at a time.
 - `routine-prompt.md` — the prompt for the cloud routine.
