@@ -15,11 +15,18 @@ Start with `get_setup_status`. Setup can be resumed: continue from the first unf
 so plainly; nothing else can be set up without it.
 
 **Either way the company starts on `en` and `UTC`** — deliberately neutral, because nobody guessed the user's
-settings for them. So the first thing to settle, before people and areas, is **the company name, the interface
-language and the time zone**: `update_org_settings(name, language, timezone)`, and the agent working window in the
-same zone, otherwise agents keep a UTC day and every deadline lands on the wrong evening. Ask for the time zone as
-a full IANA name (`Asia/Ho_Chi_Minh`, `America/Sao_Paulo`, `Europe/Berlin`); short forms such as `UTC+7` or `IST`
-are rejected — `IST` alone is India, not Israel. Do not infer a country from the language the user writes in.
+settings for them. Set what you already know from the conversation — `update_org_settings(name, language, timezone)`
+— and give the agent working window the same zone: otherwise agents keep a UTC day and a deadline lands on the
+wrong evening.
+
+**These are not a gate.** Never hold up the setup waiting for them, and never open with a form of questions about
+them. Ask when it comes up naturally — the user names a working hour, a city, a time of day — and change them then and
+there, in whatever conversation you are in. A company works fine on defaults until someone says otherwise, and
+nothing here is a one-time choice.
+
+Time zones take a full IANA name (`Asia/Ho_Chi_Minh`, `America/Sao_Paulo`, `Europe/Berlin`); short forms such as
+`UTC+7` or `IST` are rejected — `IST` alone is India, not Israel. Do not infer a country from the language the
+user writes in: ask, or leave it.
 
 ## 2. A conversation, not a form
 Find out in plain language, with short questions, no more than two at a time:
@@ -30,7 +37,8 @@ Find out in plain language, with short questions, no more than two at a time:
   person gets an English interface, while the text of their tasks is still translated for them. Say so plainly
   instead of promising more.
 - **Agent working window**: the hours when agents recalculate plans (default Mon–Fri 09:00–19:00 in the
-  organization's time zone).
+  organization's time zone). The working calendar is days of the week only — public holidays are not modelled in
+  this version, so a deadline can land on one. Say that plainly if it comes up; do not promise otherwise.
 - **Words not to translate**: brand and product names, internal terms.
 - **Playbook**: how this company likes to work. Saved with `set_playbook`, read by agents on every run.
 

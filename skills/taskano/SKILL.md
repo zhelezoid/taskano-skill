@@ -19,6 +19,7 @@ People work in a Telegram bot in their own language; you work through the Taskan
 | The user asks to set a task for themselves or someone else | the section below |
 | "How is Alex doing", "what's going on in sales" | `review_person` or `list_tasks`; answer briefly and to the point |
 | "Let's go through my tasks", "task review" | [review.md](review.md) — one task at a time, five steps |
+| The owner mentions their time zone, working hours, language or what the company should be called | `update_org_settings` right there — settings change in any conversation, they are not part of a setup session |
 | A working chat is wrapping up | the section "Tasks from this chat" below |
 
 ## Setting a task on the user's behalf (no agent)
