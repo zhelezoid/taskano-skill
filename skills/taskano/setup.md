@@ -60,6 +60,9 @@ Each invited person gets an email with a link to the Telegram bot (@Taskano_bot)
 confirm their time zone, and from then on receive tasks in the bot. `get_setup_status` shows who has signed in.
 People who have not signed in receive nothing — check this before promising the user that work has started.
 
+- After signing in, the bot tells each person how to put the app on their phone's home screen, so their task list
+  is one tap away instead of a search through Telegram. Repeat it to the user for their own phone: open the app
+  from the bot, then "Add to Home Screen" in the "…" menu.
 - The email did not arrive (spam, a blocked address): `resend_invitation(email)` issues a fresh link. `invite_person`
   also returns a `telegramLink` that can be handed over directly.
 - "This Telegram is already linked to someone else": that Telegram account belongs to another Taskano user. Accounts
