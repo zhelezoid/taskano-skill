@@ -28,7 +28,12 @@ The owner says "have Alex send the client the updated proposal by Friday".
 2. A task needs **what to do**, **why** (`why`), **done criteria** (`done_criteria`) and **a date** (`due_date`).
    Infer what is missing from the conversation; if it cannot be inferred, ask **one** short question.
 3. `create_task` **without** `agent`, with an `idempotency_key` (for example `human-<date>-<gist>`).
-4. For the user themselves — the same, with `assignee` = the user. A personal item ("remind me to buy…") goes to
+4. For the user themselves — the same, with `assignee` = the user. **Ask not "who does it" but "whose item is
+   this".** An item that serves the company is a company task, even when the owner does it themselves; personal is
+   what would remain if the company closed. "Agree a delivery date with a supplier" — company, though the owner
+   makes the call; "go to the partner meeting" — company; "renew the car insurance", "book a doctor's
+   appointment" — personal. Borderline — one short question, not a guess.
+   A company task goes to `create_task` (with `why`, `done_criteria`, `due_date`); a personal item goes to
    `personal_add`, sorted **right away**:
    - `category`: `do` — a concrete action; `decide` — a choice or fork ("open a second location or not");
      `someday` — postponed, on ice;
@@ -37,7 +42,12 @@ The owner says "have Alex send the client the updated proposal by Friday".
    - `important: true` — only for the 2–3 main things, otherwise the star means nothing;
    - `due_date` — only a real deadline; no deadline — no date (do not default to "tomorrow").
    To sort what is already recorded: `personal_list` → `personal_update`. When loading many items at once, sort each.
-5. Reply in one line: who, what, by when.
+   An item already recorded in the wrong space — `move_to_org(task, org)`: `org` is the company, or `'personal'`
+   for the personal space. Into a company it also needs `why`, `done_criteria` and `due_date` — collect them in the
+   same conversation. Only the person themselves can move an item; an agent cannot.
+5. Put the context in right away: `add_source` with where the task came from (this conversation, a chat, a ticket)
+   and a `quote` — the sentence it is based on. The person who gets the task did not read the conversation.
+6. Reply in one line: who, what, by when.
 
 ## Tasks from this chat (at the end of any working chat)
 

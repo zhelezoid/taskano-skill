@@ -17,7 +17,10 @@ Do not give all the steps at once. Each step is a short message with one questio
 answer.
 
 1. **Discuss.** Recall the gist in 2–3 lines (from the description, comments, attachments) and ask what has changed
-   since it was recorded. Listen; clarify with facts, not opinions.
+   since it was recorded. Listen; clarify with facts, not opinions. Check where the item lives: ask not "who does
+   it" but **"whose item is this"** — an item that serves the company is the company's, even when the user does it
+   themselves; personal is what would remain if the company closed. If it sits in the wrong space — say so and
+   offer to move it; the move itself happens at the commit step.
 2. **Reflect.** Help the user see the task honestly: what is really in the way, what they are avoiding, what "doing
    nothing for another month" would cost. One or two observations, no judgement and no pep talk.
 3. **Record the decision.** Put the decision in one sentence ("no second location until orders double") and ask
@@ -29,7 +32,10 @@ answer.
    - the kind or importance changes → `personal_update` (`category`, `important`, `due_date`);
    - waiting on someone → `personal_update(waiting_for, check_date)`;
    - strategy steps done by another person → company tasks (`create_task` with `why`, `done_criteria`,
-     `due_date`); the user's own steps → `personal_add`.
+     `due_date`); the user's own steps → `personal_add`;
+   - the item belongs in the other space → `move_to_org(task, org)`, one item at a time and only after an explicit
+     "yes". Into a company it needs `why`, `done_criteria` and `due_date` — collect what is missing in this same
+     conversation, that is what the move is for. Only the user can move an item; an agent cannot.
 
 Then: "Next — <title>?". The user can say "stop" at any time — then give a short summary: how many tasks were
 reviewed and which decisions were recorded.
@@ -39,4 +45,6 @@ reviewed and which decisions were recorded.
 - One task at a time, one step per message. Do not move to the next task until the commit step is done.
 - Decisions and strategies are recorded only after an explicit "yes".
 - Delete nothing without an explicit "yes".
-- Personal and company never mix: tasks for employees go to the company, the user's own items go to personal.
+- Personal and company never mix — and the line between them is "whose item is this", not "who does it": work for
+  the company goes to the company even when the user does it themselves; personal is what would remain if the
+  company closed.
