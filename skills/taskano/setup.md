@@ -6,9 +6,20 @@ The goal of the first session is not "everything configured" but **one step sent
 Start with `get_setup_status`. Setup can be resumed: continue from the first unfinished item.
 
 ## 1. Organization
-No company yet → a Taskano invite code is needed. Taskano is an invite-only pilot: the code comes from whoever
-invited the user. `create_org(name, invite_code)`. Ask for the company name and the code in one message.
-No code — stop here and say so plainly; nothing else can be set up without it.
+`get_setup_status` already said whether a company exists.
+
+**It does** — an operator set it up before the first sign-in. Create nothing, go straight to the settings below.
+
+**It does not** — Taskano is an invite-only pilot: the code comes from whoever invited the user.
+`create_org(name, invite_code)`. Ask for the company name and the code in one message. No code — stop here and say
+so plainly; nothing else can be set up without it.
+
+**Either way the company starts on `en` and `UTC`** — deliberately neutral, because nobody guessed the user's
+settings for them. So the first thing to settle, before people and areas, is **the company name, the interface
+language and the time zone**: `update_org_settings(name, language, timezone)`, and the agent working window in the
+same zone, otherwise agents keep a UTC day and every deadline lands on the wrong evening. Ask for the time zone as
+a full IANA name (`Asia/Ho_Chi_Minh`, `America/Sao_Paulo`, `Europe/Berlin`); short forms such as `UTC+7` or `IST`
+are rejected — `IST` alone is India, not Israel. Do not infer a country from the language the user writes in.
 
 ## 2. A conversation, not a form
 Find out in plain language, with short questions, no more than two at a time:
@@ -56,6 +67,13 @@ a new one in the routine (**Edit → API trigger → Generate token**), call `co
 URL and token on the page it returns.
 
 ## 5. People sign in
+
+**The owner signs in too — do not skip this.** An invitation is never sent to someone who is already a member, so
+the owner links Telegram themselves: open @Taskano_bot, `/start`, sign in with the same email, enter the code from
+the letter. Until that link exists Taskano cannot reach the owner at all: no decisions to make, no proposals from
+agents, no "the AI budget has run out", no "cannot reach the runner", no morning digest — everything is silently
+dropped. Walk the user through it and confirm it worked before promising that Taskano will tell them anything.
+
 Each invited person gets an email with a link to the Telegram bot (@Taskano_bot). They open it, agree to the terms,
 confirm their time zone, and from then on receive tasks in the bot. `get_setup_status` shows who has signed in.
 People who have not signed in receive nothing — check this before promising the user that work has started.
@@ -73,7 +91,10 @@ The team can add the bot to their Telegram work groups. Whoever links a group mu
 the bot first, otherwise the bot cannot explain what went wrong. Add @Taskano_bot to the group and make it an administrator,
 otherwise Telegram hides the messages from it. Only an owner or admin of the company can link a group; they get a
 confirmation in their private chat with the bot. In the group the bot stays silent. It files photos and facts from
-people of the company under the right tasks, and proposes tasks from clear assignments. `list_groups` shows linked
+people of the company under the right tasks, and proposes tasks from clear assignments. **Only messages from people
+who are already active members of this company are read** — anything written by someone who has not signed in to
+Taskano is dropped, not stored. So a group is worth linking after the team has signed in, not before, otherwise it
+looks as if the bot collects nothing. One group belongs to one company at a time. `list_groups` shows linked
 groups, `pause_group` / `resume_group` turn the intake off and on.
 
 ## 7. Running it afterwards
