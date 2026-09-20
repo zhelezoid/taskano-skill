@@ -3,6 +3,9 @@
 The Claude skill for [Taskano](https://taskano.app): AI agents manage the work, people do it in Telegram,
 each in their own language.
 
+**Start with [PHILOSOPHY.md](PHILOSOPHY.md)** — what the product believes, what it needs to know about your
+people to work at all, and which capability switches on at which point as a company grows.
+
 Taskano is an invite-only pilot. Either your company has already been set up for you — then you just sign in with
 your email — or you need an invite code from whoever invited you.
 
@@ -28,6 +31,7 @@ this skill from a repository). Skip it at the start — setup.md explains when i
    (setup.md → "Agent runner").
 
 ## Contents
+- `PHILOSOPHY.md` — the idea, what the system needs from you, how it grows.
 - `skills/taskano/SKILL.md` — entry point.
 - `skills/taskano/setup.md` — setting up an organization.
 - `skills/taskano/assigning.md` — the craft of handing work over: when to offer, one task or a plan, who does it.
