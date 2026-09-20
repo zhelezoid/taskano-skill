@@ -26,6 +26,7 @@ your email — or you need an invite code from whoever invited you.
 ## Contents
 - `skills/taskano/SKILL.md` — entry point.
 - `skills/taskano/setup.md` — setting up an organization.
+- `skills/taskano/assigning.md` — the craft of handing work over: when to offer, one task or a plan, who does it.
 - `skills/taskano/leading.md` — how agents lead people (the routine runner reads it on every run).
 - `skills/taskano/review.md` — reviewing your own tasks one at a time.
 - `routine-prompt.md` — the prompt for the cloud routine.
