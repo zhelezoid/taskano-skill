@@ -7,10 +7,13 @@ Taskano is an invite-only pilot. Either your company has already been set up for
 your email — or you need an invite code from whoever invited you.
 
 ## What you need
-- A claude.ai account with Claude Code on the web (the agent runner is a cloud routine).
-- A GitHub account (the routine reads this skill from a repository, so you fork this one).
+- A claude.ai account with this skill loaded — that is where you run the company from.
 - A Telegram account for every person who will receive tasks.
 - A Taskano invite code — unless your company has already been set up for you.
+
+Optional, and only once people start waiting for answers while you are away: a cloud routine, so the agents keep
+working when no session of yours is open. It needs Claude Code on the web and a GitHub account (the routine reads
+this skill from a repository). Skip it at the start — setup.md explains when it is worth connecting.
 
 ## Setup
 1. **Connector.** In claude.ai: **Settings → Connectors → Add custom connector**. Name it `Taskano`, URL
@@ -18,10 +21,11 @@ your email — or you need an invite code from whoever invited you.
 2. **Skill.** In claude.ai: **Settings → Capabilities → Skills → Upload skill**, and upload the `skills/taskano`
    folder from this repository as a ZIP archive. (If you also use the Claude Code CLI, copy the same folder to
    `~/.claude/skills/taskano` there.)
-3. **Fork this repository** into your own GitHub account. The routine you create during setup reads the skill
-   from your fork.
-4. Tell Claude: **"Set up my company in Taskano"**. Claude takes it from there in conversation: people, areas,
-   the agent runner, and the first task.
+3. Tell Claude: **"Set up my company in Taskano"**. Claude takes it from there in conversation: people, areas,
+   and the first task. From then on the agents do their work inside your own sessions — every time you open a chat,
+   they catch up on what has piled up.
+4. Later, if people start waiting while you are away: fork this repository and set up the cloud routine
+   (setup.md → "Agent runner").
 
 ## Contents
 - `skills/taskano/SKILL.md` — entry point.

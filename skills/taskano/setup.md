@@ -54,11 +54,27 @@ Find out in plain language, with short questions, no more than two at a time:
   pauses until the budget is raised. There is no tool that reports the amount spent so far.
 - `set_playbook` — the playbook.
 
-## 4. Agent runner (routine)
-Agents lead through a claude.ai cloud routine. It runs every hour during the working window, and right away when
-a person has a question or is idle.
+## 4. Agent runner (routine) — optional, and not now
 
-Walk the user through the steps and check each one:
+**A company works without it.** While there is no runner, the agents catch up in the owner's own sessions: every
+time they open a chat with this skill, the run ritual goes through what has piled up — results to check, questions,
+people left without a step. For a company that is just starting, with a handful of tasks a day, that is enough.
+The server does the timed part anyway, with or without a runner: releases scheduled tasks, reminds, keeps the
+"Now" slot, escalates silence, sends the morning digest.
+
+**What a runner adds:** agents react when the owner is away. A question asked on Saturday gets an answer on
+Saturday, not on Monday when the owner opens their laptop.
+
+**Say this plainly when setting up, and move on** — do not stop the setup for it. Offer to connect it later, when
+one of these shows up, and say which one it is:
+
+- people in other time zones, or work at weekends;
+- questions and submitted results that sit for hours because the owner was not at the computer (you see the
+  timestamps in the briefing);
+- more than a handful of active people, so the queue does not empty itself between the owner's sessions.
+
+Connecting it needs a claude.ai account with Routines, and the steps below. Walk the user through them and check
+each one:
 1. Open https://claude.ai/code/routines → **New routine**. If the account has no Routines section, the runner
    cannot be set up: the rest of Taskano works, but agents will not lead anyone on their own. Say this plainly
    rather than looking for workarounds.
@@ -113,7 +129,7 @@ groups, `pause_group` / `resume_group` turn the intake off and on.
   language themselves with `/language`.
 - Check on people any time: `review_person`, `list_tasks`, `agent_metrics`.
 
-## 8. First result
+## 8. First result (this is what the first session is for)
 - `create_plan` for one real piece of work for one person, 2–3 steps (`add_step`), then `release_step` for the first.
 - Tell the user: the person will get the step in Telegram as soon as they sign in from the invitation email.
 - The session ends when the step is sent. `get_setup_status` shows that the first task exists.
