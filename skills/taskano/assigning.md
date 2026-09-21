@@ -102,6 +102,10 @@ real date.
 
 ## Who does it
 
+**Read who they are before you choose.** `list_people` carries `about` — what each person closes. Empty for
+someone you are about to give work to? Ask the owner one question and write it down (`set_person_about`);
+it is the difference between an item that lands and an item that comes back.
+
 **Name one person and say why** — do not ask "who should do this?" and do not guess silently.
 
 1. `list_people` / `find_person` — who is in this company at all.
@@ -141,11 +145,15 @@ before recording, in one pass — not by interrogating.
 
 ## Put the context in at once
 
-The person receiving the task did not read your conversation, and neither will you next week. Right after
-`create_task` — `add_source`: where it came from (this conversation, a work chat, a ticket, an email), a title a
-human would recognise, and a `quote` with the words it is based on.
+The person receiving the task did not read your conversation, and neither will you next week. So a task of an
+organization does not go in without it: `create_task` takes `source` — where it came from (this conversation, a
+work chat, a ticket, an email), a title a human would recognise, and a `quote` with the words it is based on.
+From a conversation that is `source: { kind: "chat", title: "<what the talk was about, with the date>",
+quote: "<their own words>" }`. Without `source` the server refuses the task, and it is right to: a bare title
+makes the person ask what it grew out of.
 
-`add_source` costs one call now and saves the "what was this about?" later.
+The quote is **their words, not your retelling** — the sentence that made this a task. One more source later
+(a ticket, a letter) — `add_source`.
 
 ## Anti-patterns
 
@@ -154,6 +162,7 @@ human would recognise, and a `quote` with the words it is based on.
 - Asking "shall I write that down?" instead of recording it and saying so.
 - Raising an item again after "drop that".
 - Inventing a date silently instead of naming the one you set.
+- Retelling the conversation in `quote` instead of quoting the sentence the task grew out of.
 - A task worded so that only someone who read this conversation understands it.
 - Choosing an assignee silently, or asking "who?" without having looked.
 - Breaking a single action into a plan to look thorough.

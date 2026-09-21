@@ -82,9 +82,9 @@ status report.
 Between runs you have no memory except Taskano, and the person who gets the step never saw the conversation it
 came from. So the task itself has to hold everything needed to work on it.
 
-- **Setting a task — put the context in at that moment**, not later: `add_source` with where it came from
-  (a conversation, a work chat, a ticket in a tracker, an email), a `title` a person would recognise and a `quote` —
-  the words it is based on.
+- **Setting a task — put the context in at that moment**, not later: `create_task` carries `source` — where it
+  came from (a conversation, a work chat, a ticket in a tracker, an email), a `title` a person would recognise and
+  a `quote`, the words it is based on. Anything found afterwards — `add_source`.
 - **Read an external task with your own connector — store the snapshot**: `update_source` with `status`, a short
   `summary` and the date it was updated, so the next run does not have to go there again. `get_task` gives the age of
   every snapshot; older than a week is a reason to look again. The server never goes to external systems itself —

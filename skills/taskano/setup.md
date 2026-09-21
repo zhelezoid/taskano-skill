@@ -46,6 +46,9 @@ Find out in plain language, with short questions, no more than two at a time:
 - `update_org_settings` — language, time zone, window, glossary.
 - `create_agent` — one per area; the owner is the person responsible for that area (by default, the user).
 - `invite_person` — for each person (email, name, language). They receive an email with a link to the Telegram bot.
+- `set_person_about` — right after inviting, ask who this person is and what they close, and write the answer down:
+  their trade, what they are good at, what not to give them, what they already know. One paragraph in the owner's
+  own words. This is what makes an item land on the right person later; without it you will guess.
 - `set_person_settings` — mode, quotas between areas if a person works for several (for example 60/40), and also
   `timezone` (an IANA name such as `America/Sao_Paulo`) and working hours. The bot itself offers only a few common
   time zones, so set anything else here.
@@ -80,7 +83,10 @@ each one:
    rather than looking for workarounds.
 2. Prompt: the text from `routine-prompt.md` in this repository (with the organization's name filled in).
 3. Repository: the user's own fork of this skill repository. Connector: Taskano (remove the others).
-4. Schedule: hourly, during the organization's working window.
+4. Schedule: **two or three times a day inside the organization's working window** — say, the start of the day,
+   after lunch and before the end — and nothing on weekends. Not hourly: whatever is actually blocking someone
+   (a question, "unclear", a refusal, an idle person, a submitted result) wakes the runner the moment it happens.
+   The schedule is only there for states that produce no event — a person who has run out of ready steps.
 5. Save, open **Edit → Add another trigger → API**, copy the URL and press **Generate token**.
 6. Call `connect_runner` to get a link to a Taskano page. The user opens it and pastes the URL and token there.
    **The token must never be pasted into the chat.**
