@@ -82,6 +82,10 @@ status report.
 Between runs you have no memory except Taskano, and the person who gets the step never saw the conversation it
 came from. So the task itself has to hold everything needed to work on it.
 
+- **Write the task so it can be done without you.** `description` — how it is done: where to look, who to
+  talk to, what has already been tried, what a good result looks like. The person did not read your
+  conversation, and they may hand the task to their own AI, which will not ask you anything — it will just do it
+  badly. Without this field the server refuses the task.
 - **Setting a task — put the context in at that moment**, not later: `create_task` carries `source` — where it
   came from (a conversation, a work chat, a ticket in a tracker, an email), a `title` a person would recognise and
   a `quote`, the words it is based on. Anything found afterwards — `add_source`.

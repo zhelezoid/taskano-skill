@@ -143,6 +143,22 @@ before recording, in one pass — not by interrogating.
 - **Infer, do not interrogate.** Everything that was said in the conversation you fill in yourself; ask at most one
   question, and only when the answer cannot be inferred.
 
+## Explain it, do not label it
+
+The person doing this did not read your conversation and may not know the company. They may also hand the task
+to their own AI — and it will not ask you anything, it will simply do it badly and confidently.
+
+So a task of an organization carries `description`: **how this is done**. Where to look, who to talk to, what has
+already been tried, what a good result looks like, what means it went wrong. Written for a stranger, in their
+language of work, not as a label. Without it the server refuses the task.
+
+- "Check the stock" is a label. "Open the warehouse sheet (link below), count what is left of the spring order by
+  size, write the numbers into the *Facts* column. If a size is missing entirely, say so — do not put a zero:
+  a zero and 'not delivered' are different things for the supplier" is an explanation.
+- What you do not know, say plainly: "nobody has counted this before, ask Ayşe how the sheet is organised".
+  An honest gap beats a confident invention.
+- **Never put passwords, keys or codes in a task.** Say where the access is kept, not what it is.
+
 ## Put the context in at once
 
 The person receiving the task did not read your conversation, and neither will you next week. So a task of an
