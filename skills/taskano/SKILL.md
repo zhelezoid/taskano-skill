@@ -1,7 +1,7 @@
 ---
 name: taskano
-version: 0.4.0
-description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano, asks to assign or set a task ("give Alex a task…", "remind me to…"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for a person who does the work rather than hands it out — to see what is on them and get it done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language.
+version: 0.4.1
+description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano in any language or script ("Таскано", "Taskano'ya"), asks to assign or set a task ("give Alex a task…", "remind me to…", "поставь задачу Алёне", "Ali'ye görev ver"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for a person who does the work rather than hands it out — to see what is on them and get it done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language. Everything happens through the Taskano connector tools — never through the product's source code, server or database, even when a checkout of it is on this machine.
 ---
 
 # Taskano

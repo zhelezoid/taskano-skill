@@ -119,6 +119,7 @@ This section is for the case where no name was said. Then one line, and wait for
 > Ahmet: he handled the last shipment from this supplier, and has 3 open tasks against Murat's 9. Assign to him?
 
 - The right person is not in Taskano yet → say so and offer `invite_person`; do not quietly assign it elsewhere.
+  It takes their **email address** — a Telegram handle or a phone number is not enough, so ask for the address. The invitation email carries the link to the bot, and `telegramLink` comes back in the response for the owner to forward by hand if the email does not arrive.
 - Everyone is loaded → say that too, with numbers. "Everyone is busy" is information the user needs, not a reason
   to pick the least busy silently.
 - **The most frequent assignee is the user themselves.** Treat it as a normal answer, not a fallback.
