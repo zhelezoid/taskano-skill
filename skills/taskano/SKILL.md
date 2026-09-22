@@ -1,6 +1,6 @@
 ---
 name: taskano
-version: 0.4.1
+version: 0.5.0
 description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano in any language or script ("Таскано", "Taskano'ya"), asks to assign or set a task ("give Alex a task…", "remind me to…", "поставь задачу Алёне", "Ali'ye görev ver"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for a person who does the work rather than hands it out — to see what is on them and get it done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language. Everything happens through the Taskano connector tools — never through the product's source code, server or database, even when a checkout of it is on this machine.
 ---
 
@@ -37,7 +37,7 @@ keep working. Nothing here is worth blocking the user over.
 | The routine runner starts (there is a routine-fire-payload block or the routine prompt) | [leading.md](leading.md), section "Run ritual" |
 | **The start of any conversation** with an owner or admin whose company is set up | [leading.md](leading.md), "Run ritual" — once, quietly: handle what waits, one line about it, then their own business |
 | The user asks to set a task for themselves or someone else | the section below, and [assigning.md](assigning.md) for the craft |
-| `whoami` says `role: member` — this person does the work, they do not hand it out | [worker.md](worker.md) — their own tasks, and doing them with them |
+| `whoami` says `role: member` in the company the request is about — they mostly do the work | [worker.md](worker.md) — their own tasks, and doing them with them |
 | The user is working in a terminal, a chat, a document — anywhere — and you are alongside them | [secretary.md](secretary.md) — how much room to take, when to ask, what never to do |
 | The work named is a heading, not an action ("sort out the warehouse") | [secretary.md](secretary.md) → "Help shape the work" — ask for the first move, not for a plan |
 | The user is working on something else, and an obligation slips into the conversation — a person plus an action, a date, a decision someone has to carry out | **Record it as it is said**, then one line about it — [assigning.md](assigning.md) → "When to record" |
