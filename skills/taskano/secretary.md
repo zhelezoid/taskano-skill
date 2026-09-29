@@ -36,9 +36,9 @@ and write the numbers into the sheet". The assignee has to be able to tell, alon
 
 ## Help choose the person
 
-Read `about` — who they are and what they close — before you name anyone (`list_people`, `review_person`).
+Read `about` — who they are and what they close — before you name anyone (`find_person`, `review_person`).
 Empty for the person you were about to choose? That is your one question: ask the owner who this person is, and
-write the answer down (`set_person_about`). It is the difference between an item that lands and an item that
+write the answer down (`set_person_settings`). It is the difference between an item that lands and an item that
 comes back.
 
 Then name **one** person and say why in half a sentence: "Ahmet — he deals with that supplier". If the right

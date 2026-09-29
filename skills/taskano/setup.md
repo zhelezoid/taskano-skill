@@ -10,9 +10,10 @@ Start with `get_setup_status`. Setup can be resumed: continue from the first unf
 
 **It does** — an operator set it up before the first sign-in. Create nothing, go straight to the settings below.
 
-**It does not** — Taskano is an invite-only pilot: the code comes from whoever invited the user.
-`create_org(name, invite_code)`. Ask for the company name and the code in one message. No code — stop here and say
-so plainly; nothing else can be set up without it.
+**It does not** — create it: `create_org(name)`. Ask only for the company name; no invite code is needed. If the
+user mentions an invite code, pass it as `invite_code` — a wrong one is refused, so say so rather than retrying
+without it. A refusal with `limit_exceeded` means a product limit (three companies per person, or new sign-ups
+paused for the day): tell the user what the message says and stop — nothing else can be set up yet.
 
 **Either way the company starts on `en` and `UTC`** — deliberately neutral, because nobody guessed the user's
 settings for them. Set what you already know from the conversation — `update_org_settings(name, language, timezone)`
@@ -46,7 +47,11 @@ Find out in plain language, with short questions, no more than two at a time:
 - `update_org_settings` — language, time zone, window, glossary.
 - `create_agent` — one per area; the owner is the person responsible for that area (by default, the user).
 - `invite_person` — for each person (email, name, language). They receive an email with a link to the Telegram bot.
-- `set_person_about` — right after inviting, ask who this person is and what they close, and write the answer down:
+  **The email address is the way in, and there is no other.** No address named — ask for it in one line and wait:
+  "What is Alena's email? The invitation goes there." A Telegram handle, a phone number or just a name is not
+  enough, so do not offer them as a substitute and do not say the person has been added until they have been.
+  If the letter does not arrive, the response carries `telegramLink` — the same link, to forward by hand.
+- `set_person_settings(about)` — right after inviting, ask who this person is and what they close, and write the answer down:
   their trade, what they are good at, what not to give them, what they already know. One paragraph in the owner's
   own words. This is what makes an item land on the right person later; without it you will guess.
 - `set_person_settings` — mode, quotas between areas if a person works for several (for example 60/40), and also
@@ -111,7 +116,7 @@ People who have not signed in receive nothing — check this before promising th
 - After signing in, the bot tells each person how to put the app on their phone's home screen, so their task list
   is one tap away instead of a search through Telegram. Repeat it to the user for their own phone: open the app
   from the bot, then "Add to Home Screen" in the "…" menu.
-- The email did not arrive (spam, a blocked address): `resend_invitation(email)` issues a fresh link. `invite_person`
+- The email did not arrive (spam, a blocked address): `invite_person(email, resend: true)` issues a fresh link. `invite_person`
   also returns a `telegramLink` that can be handed over directly.
 - "This Telegram is already linked to someone else": that Telegram account belongs to another Taskano user. Accounts
   are never merged. The person should sign in with the email they already use, or use another Telegram account.
@@ -125,7 +130,7 @@ people of the company under the right tasks, and proposes tasks from clear assig
 who are already active members of this company are read** — anything written by someone who has not signed in to
 Taskano is dropped, not stored. So a group is worth linking after the team has signed in, not before, otherwise it
 looks as if the bot collects nothing. One group belongs to one company at a time. `list_groups` shows linked
-groups, `pause_group` / `resume_group` turn the intake off and on.
+groups, `update_group(status: 'paused' | 'active')` turns the intake off and on.
 
 ## 7. Running it afterwards
 - An area is on hold (seasonal, the person is away): `update_agent(paused: true)`, and `paused: false` to resume.
@@ -133,7 +138,7 @@ groups, `pause_group` / `resume_group` turn the intake off and on.
 - Someone leaves the company: `offboard_person`. Their open tasks are cancelled and their timers stop.
 - Someone wants a different language or working hours: `set_person_settings`. People can also switch the bot's
   language themselves with `/language`.
-- Check on people any time: `review_person`, `list_tasks`, `agent_metrics`.
+- Check on people any time: `review_person`, `find_task(person)`, `agent_metrics`.
 
 ## 8. First result (this is what the first session is for)
 - `create_plan` for one real piece of work for one person, 2–3 steps (`add_step`), then `release_step` for the first.

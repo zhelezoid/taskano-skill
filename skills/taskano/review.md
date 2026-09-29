@@ -5,7 +5,7 @@ in any language. The goal is not to retell the list but to bring each task to a 
 
 ## Preparation (once, at the start)
 
-1. Collect the tasks: `personal_list` (personal) and `list_tasks` for each company with `person` = the user (open
+1. Collect the tasks: `find_task(org: "personal")` and `find_task(person: <the user>)` for each company (open
    tasks where they are the assignee or the human author). Include waitings ("waiting on others").
 2. Show them as **one short list** in two blocks — **Personal** and **Company <name>** — titles only, one line
    each. Review order: ★ important first, then "decide", then the ones that have been sitting longest.
@@ -28,11 +28,11 @@ answer.
 4. **Strategy.** How exactly it gets done: 2–4 steps, who, by when, what could go wrong. Once agreed —
    `comment_task(text: "Strategy: …")`.
 5. **Commit.** Bring the system in line with the decision and say what you did in one line:
-   - done / no longer needed → `personal_done` or `cancel_task`;
-   - the kind or importance changes → `personal_update` (`category`, `important`, `due_date`);
-   - waiting on someone → `personal_update(waiting_for, check_date)`;
+   - done / no longer needed → `submit_task` or `cancel_task`;
+   - the kind or importance changes → `update_task` (`category`, `priority`, `due_date`);
+   - waiting on someone → `update_task(waiting_for, next_check_at)`;
    - strategy steps done by another person → company tasks (`create_task` with `why`, `done_criteria`,
-     `due_date`); the user's own steps → `personal_add`;
+     `due_date`); the user's own steps → `create_task` with `org: "personal"`;
    - the item belongs in the other space → `move_to_org(task, org)`, one item at a time and only after an explicit
      "yes". Into a company it needs `why`, `done_criteria` and `due_date` — collect what is missing in this same
      conversation, that is what the move is for. Only the user can move an item; an agent cannot.

@@ -17,7 +17,7 @@ status report.
 
 1. `get_briefing(org)`. If `nothing_to_do: true`, stop right away and do nothing.
 2. For each agent in the briefing (pass `agent` in every call):
-   1. **Results** (`submitted`): check against the done criteria → `accept_result`, or `request_rework` with a reason.
+   1. **Results** (`submitted`): check against the done criteria → `review_result`, or `review_result(verdict: "rework")` with a reason.
    2. **Comments** (`comments`): what a person wrote about a task without blocking it — a fact, a constraint,
       how far they have got. Answer to the point with `comment_task`, or fix the step (`update_task`) and say
       what you changed. A fact that matters further on goes into the task itself (`add_source`, with the
@@ -89,7 +89,8 @@ came from. So the task itself has to hold everything needed to work on it.
 - **Setting a task — put the context in at that moment**, not later: `create_task` carries `source` — where it
   came from (a conversation, a work chat, a ticket in a tracker, an email), a `title` a person would recognise and
   a `quote`, the words it is based on. Anything found afterwards — `add_source`.
-- **Read an external task with your own connector — store the snapshot**: `update_source` with `status`, a short
+- **Read an external task with your own connector — store the snapshot**: `add_source` again with the same
+  `system` and `external_id` (it refreshes the row rather than adding a second one) — with `status`, a short
   `summary` and the date it was updated, so the next run does not have to go there again. `get_task` gives the age of
   every snapshot; older than a week is a reason to look again. The server never goes to external systems itself —
   it only keeps what you brought.
@@ -115,7 +116,7 @@ pays, or promises dates or prices to someone outside, goes through `propose_chan
 
 ## Waitings instead of "remember to"
 Everything external (a contract under review, a package in transit, waiting for a partner's reply) is
-`create_waiting` with `expected_at` and `on_arrival` (what to do when it happens). The server reminds you to check.
+`create_task` with `kind: 'waiting'`, `expected_at` and `on_arrival` (what to do when it happens). The server reminds you to check.
 
 ## Several agents, one person
 A person has one queue. Do not demand "do it right now": urgency that pre-empts their current step goes only

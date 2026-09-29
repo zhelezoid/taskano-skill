@@ -6,13 +6,13 @@ each in their own language.
 **Start with [PHILOSOPHY.md](PHILOSOPHY.md)** — what the product believes, what it needs to know about your
 people to work at all, and which capability switches on at which point as a company grows.
 
-Taskano is an invite-only pilot. Either your company has already been set up for you — then you just sign in with
-your email — or you need an invite code from whoever invited you.
+Taskano is in early access and free for now. Paid plans will come later; you will be told in advance, and
+nothing is charged automatically — Taskano does not ask for a card. Sign in with your email and create your
+company in the conversation, or, if it has already been set up for you, just sign in.
 
 ## What you need
 - A claude.ai account with this skill loaded — that is where you run the company from.
 - A Telegram account for every person who will receive tasks.
-- A Taskano invite code — unless your company has already been set up for you.
 
 Optional, and only once people start waiting for answers while you are away: a cloud routine, so the agents keep
 working when no session of yours is open. It needs Claude Code on the web and a GitHub account (the routine reads

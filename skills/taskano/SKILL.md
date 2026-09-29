@@ -1,6 +1,6 @@
 ---
 name: taskano
-version: 0.5.0
+version: 0.6.0
 description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano in any language or script ("Таскано", "Taskano'ya"), asks to assign or set a task ("give Alex a task…", "remind me to…", "поставь задачу Алёне", "Ali'ye görev ver"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for a person who does the work rather than hands it out — to see what is on them and get it done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language. Everything happens through the Taskano connector tools — never through the product's source code, server or database, even when a checkout of it is on this machine.
 ---
 
@@ -42,7 +42,7 @@ keep working. Nothing here is worth blocking the user over.
 | The work named is a heading, not an action ("sort out the warehouse") | [secretary.md](secretary.md) → "Help shape the work" — ask for the first move, not for a plan |
 | The user is working on something else, and an obligation slips into the conversation — a person plus an action, a date, a decision someone has to carry out | **Record it as it is said**, then one line about it — [assigning.md](assigning.md) → "When to record" |
 | The user mentions a task they already have — "what is this about", "how is X going", a line read off their list | `find_task` by their words, then `get_task` before answering — [assigning.md](assigning.md) → "Talking about a task that already exists" |
-| "How is Alex doing", "what's going on in sales" | `review_person` or `list_tasks`; answer briefly and to the point |
+| "How is Alex doing", "what's going on in sales" | `review_person` or `find_task(person)`; answer briefly and to the point |
 | "Let's go through my tasks", "task review" | [review.md](review.md) — one task at a time, five steps |
 | The owner mentions their time zone, working hours, language or what the company should be called | `update_org_settings` right there — settings change in any conversation, they are not part of a setup session |
 | A working chat is wrapping up | the section "Tasks from this chat" below |
@@ -60,15 +60,15 @@ The owner says "have Alex send the client the updated proposal by Friday".
    actions, or the second depends on the first — a plan instead: assigning.md → "One task, or a plan".
 4. For the user themselves — the same, with `assignee` = the user. **Ask not "who does it" but "whose item is
    this"** (assigning.md → "Whose item is this").
-   A company task goes to `create_task` (with `why`, `done_criteria`, `due_date`); a personal item goes to
-   `personal_add`, sorted **right away**:
+   A company task goes to `create_task` (with `why`, `done_criteria`, `due_date`); a personal item goes to the
+   same `create_task` with `org: "personal"` and `assignee` = the user, sorted **right away**:
    - `category`: `do` — a concrete action; `decide` — a choice or fork ("open a second location or not");
      `someday` — postponed, on ice;
    - waiting on someone or something ("waiting for the accountant's reply", "when the invoice arrives") is not an
-     action: `waiting_for` + `check_date`;
+     action: `kind: 'waiting'` with `waiting_for` and `next_check_at`;
    - `important: true` — only for the 2–3 main things, otherwise the star means nothing;
    - `due_date` — only a real deadline; no deadline — no date (do not default to "tomorrow").
-   To sort what is already recorded: `personal_list` → `personal_update`. When loading many items at once, sort each.
+   To sort what is already recorded: `find_task(org: "personal")` → `update_task`. When loading many items at once, sort each.
    An item already recorded in the wrong space — `move_to_org(task, org)`: `org` is the company, or `'personal'`
    for the personal space. Into a company it also needs `why`, `done_criteria` and `due_date` — collect them in the
    same conversation. Only the person themselves can move an item; an agent cannot.
@@ -88,8 +88,9 @@ half-decisions, offer a **list of tasks to record**. One message, two blocks:
 
 Each item is one line: the gist · kind (do / decide / waiting on someone) · date, if one was named.
 Ask whether to record them; the user may pick numbers. Record only after an explicit "yes" (or chosen numbers);
-silence or a change of topic means "no" — do not ask again. Recording: personal → `personal_add` (with its kind),
-company → `create_task` (with `why`, `done_criteria`, `due_date`). Finish with one line: what was recorded and where.
+silence or a change of topic means "no" — do not ask again. Recording: personal → `create_task` with
+`org: "personal"` (and its kind), company → `create_task` (with `why`, `done_criteria`, `due_date`).
+Finish with one line: what was recorded and where.
 Nothing came up — offer nothing.
 
 ## Always
