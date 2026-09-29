@@ -116,8 +116,12 @@ People who have not signed in receive nothing — check this before promising th
 - After signing in, the bot tells each person how to put the app on their phone's home screen, so their task list
   is one tap away instead of a search through Telegram. Repeat it to the user for their own phone: open the app
   from the bot, then "Add to Home Screen" in the "…" menu.
-- The email did not arrive (spam, a blocked address): `invite_person(email, resend: true)` issues a fresh link. `invite_person`
-  also returns a `telegramLink` that can be handed over directly.
+- "Invite them again": `invite_person(email, resend: true)` acts on where the person is, and the response says so in
+  `result` and `sent`. Not accepted yet: a fresh invitation email with a new link (`invitation_resent`). Accepted but never
+  opened the app: an email and a bot message with an "Open app" button (`app_nudge_sent`, at most once a day). Already
+  uses the app: nothing is sent (`already_using_app`). Tell the user exactly what went out and when the person was
+  last seen in the bot and in the app — "active member" alone does not mean they use Taskano. `invite_person` also
+  returns a `telegramLink` that can be handed over directly.
 - "This Telegram is already linked to someone else": that Telegram account belongs to another Taskano user. Accounts
   are never merged. The person should sign in with the email they already use, or use another Telegram account.
 
