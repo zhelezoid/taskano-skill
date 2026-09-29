@@ -120,7 +120,8 @@ People who have not signed in receive nothing — check this before promising th
   `result` and `sent`. Not accepted yet: a fresh invitation email with a new link (`invitation_resent`). Accepted but never
   opened the app: an email and a bot message with an "Open app" button (`app_nudge_sent`, at most once a day). Already
   uses the app: nothing is sent (`already_using_app`). Tell the user exactly what went out and when the person was
-  last seen in the bot and in the app — "active member" alone does not mean they use Taskano. `invite_person` also
+  last seen in the bot and in the app — "active member" alone does not mean they use Taskano. An empty bot mark means
+  the person has not written to the bot or pressed a button there, not that they never opened it. `invite_person` also
   returns a `telegramLink` that can be handed over directly.
 - "This Telegram is already linked to someone else": that Telegram account belongs to another Taskano user. Accounts
   are never merged. The person should sign in with the email they already use, or use another Telegram account.
