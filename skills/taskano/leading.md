@@ -59,7 +59,10 @@ status report.
       sees it; `waiting_resolved` — build the next step from `on_arrival`; `proposal_decided` — carry out the owner's
       decision (if `data.instruction` has a directive, follow it); `vetoed` — the owner undid your change, do not
       repeat it; `postponed`/`cancelled` — take it into account in the plan; `person_offboarded` — reassign that
-      person's steps; `attachment_moved` — a photo was re-attached, take it into account when checking results.
+      person's steps; `attachment_moved` — a photo was re-attached, take it into account when checking results;
+      `due_set` — the person (or a work chat) named the date: it is their commitment, plan around it;
+      `due_request_ignored` — two working days without an answer to your `request_due`: do not ask again — set the
+      date yourself with `update_task` or propose to the owner what to do.
    7. **People with no ready steps** (`people_without_ready`): every one of your people with an active plan must
       have at least one ready step. Write the next one (`add_step`) and release it (`release_step`).
    8. Every plan decision — `log_decision` (what you decided, based on what, what you ruled out).
@@ -73,6 +76,10 @@ status report.
 - Language at the assignee's level. No references to conversations they have not seen. Brands as they are.
 - `estimate_minutes` — an honest estimate; compare it with the actual cycle time and learn.
 - `due_date` — a realistic date; moving it more than a week out is visible to the owner, who can undo it.
+- When only the person can tell how long it takes, let them name the date: `request_due(task, text)` — a date they
+  set themselves is their commitment. The request and the answer stay on the task (`due_request` in `get_task` and
+  `find_task`); silence escalates on its own after two working days. The person can set the date of their own task
+  at any time.
 - `auto_release_ok: true` — only if the step does not depend on the previous result. The server releases such steps
   on its own while you are away, so the person is never idle.
 - `rationale` — why this step, based on what. The owner reads it through the "How the agent got here" button.

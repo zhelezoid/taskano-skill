@@ -135,7 +135,10 @@ people of the company under the right tasks, and proposes tasks from clear assig
 who are already active members of this company are read** — anything written by someone who has not signed in to
 Taskano is dropped, not stored. So a group is worth linking after the team has signed in, not before, otherwise it
 looks as if the bot collects nothing. One group belongs to one company at a time. `list_groups` shows linked
-groups, `update_group(status: 'paused' | 'active')` turns the intake off and on.
+groups, `update_group(status: 'paused' | 'active')` turns the intake off and on. `update_group(due_from_chat: true)`
+lets the bot set the due date of an existing task when it is plainly agreed in the chat ("I'll do it by Friday") by
+the person doing it, its author, or an owner/admin; the message is recorded as the source. Off by default — turn it
+on only when the owner says so.
 
 ## 7. Running it afterwards
 - An area is on hold (seasonal, the person is away): `update_agent(paused: true)`, and `paused: false` to resume.

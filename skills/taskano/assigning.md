@@ -34,6 +34,8 @@ conversation goes on:
   and `due_date` are required). Infer all three from what was just said; if no date was named and none is implied,
   set the nearest one that makes sense and **say it in the same line** — "Recorded: Ahmet — quote to the client,
   I put Friday on it". They correct a date in three words; a question stops their train of thought.
+- **"Let them name the date"** — record the task with your nearest date, then `request_due` on it: the person
+  picks the date in the app, and if they stay silent the one who asked hears about it.
 - **Ask first only when the work is for someone else and you cannot tell who** — one short question, then record.
 - **They find out at once.** A task for another person reaches them in Telegram the moment you record it, and
   "drop that" reaches them as a cancellation. That is the trade: work does not evaporate when the chat closes.

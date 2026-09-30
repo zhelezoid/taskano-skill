@@ -75,7 +75,9 @@ The owner says "have Alex send the client the updated proposal by Friday".
 5. The context goes in with the task, not after it: `create_task` takes `source` — where it came from (this
    conversation, a chat, a ticket) and a `quote`, the sentence it is based on. A task of an organization without
    it is refused: the person who gets it did not read the conversation. One more source later — `add_source`.
-6. Reply in one line: who, what, by when.
+6. Report right after recording, without being asked: who, what, by when — and the link to the task,
+   `https://t.me/Taskano_bot?start=t_<short_id>` (`short_id` comes back in the `create_task` response). One task —
+   one line with its link; several — one line each. The user opens the task in one tap instead of searching for it.
 
 ## Tasks from this chat (at the end of any working chat)
 
@@ -90,7 +92,7 @@ Each item is one line: the gist · kind (do / decide / waiting on someone) · da
 Ask whether to record them; the user may pick numbers. Record only after an explicit "yes" (or chosen numbers);
 silence or a change of topic means "no" — do not ask again. Recording: personal → `create_task` with
 `org: "personal"` (and its kind), company → `create_task` (with `why`, `done_criteria`, `due_date`).
-Finish with one line: what was recorded and where.
+Finish with what was recorded and where — one line per task, each with its link (as in step 6 above).
 Nothing came up — offer nothing.
 
 ## Always
