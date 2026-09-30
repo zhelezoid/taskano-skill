@@ -36,7 +36,9 @@ conversation goes on:
   I put Friday on it". They correct a date in three words; a question stops their train of thought.
 - **"Let them name the date"** — record the task with your nearest date, then `request_due` on it: the person
   picks the date in the app, and if they stay silent the one who asked hears about it.
-- **Ask first only when the work is for someone else and you cannot tell who** — one short question, then record.
+- **Whose is it, the user's or someone else's?** No other person named — it is the user's own: record it on them.
+  **Ask first only when the work is for someone else and you cannot tell who** — one short question, then record.
+  Personal or company — see "Whose item is this".
 - **They find out at once.** A task for another person reaches them in Telegram the moment you record it, and
   "drop that" reaches them as a cancellation. That is the trade: work does not evaporate when the chat closes.
 - At the end of a working chat, gather what never became an obligation — see "Tasks from this chat" in SKILL.md.

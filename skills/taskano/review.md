@@ -5,8 +5,10 @@ in any language. The goal is not to retell the list but to bring each task to a 
 
 ## Preparation (once, at the start)
 
-1. Collect the tasks: `find_task(org: "personal")` and `find_task(person: <the user>)` for each company (open
-   tasks where they are the assignee or the human author). Include waitings ("waiting on others").
+1. Collect the tasks. Without `org`, `find_task` searches the personal space and every company at once, and says
+   where each task was found: `find_task(person: <the user>)` — the open tasks **on** them (`person` is only the
+   one doing it), and `find_task(mine_only: true)` — what they set themselves, on anyone. Merge the two; waitings
+   ("waiting on others") come with them.
 2. Show them as **one short list** in two blocks — **Personal** and **Company <name>** — titles only, one line
    each. Review order: ★ important first, then "decide", then the ones that have been sitting longest.
 3. Ask one thing: "Start with <first task>, or pick another?" — then go one by one.
@@ -27,12 +29,19 @@ answer.
    "right?". After a "yes" — `comment_task(text: "Decision: …")`.
 4. **Strategy.** How exactly it gets done: 2–4 steps, who, by when, what could go wrong. Once agreed —
    `comment_task(text: "Strategy: …")`.
-5. **Commit.** Bring the system in line with the decision and say what you did in one line:
-   - done / no longer needed → `submit_task` or `cancel_task`;
-   - the kind or importance changes → `update_task` (`category`, `priority`, `due_date`);
+5. **Commit.** Bring the system in line with the decision. Offer only what their role in that company allows
+   (SKILL.md → "Which company, which role"), and say what you did in one line — **only after the call came back
+   without an error**; a refusal is reported as it came, not as "recorded":
+   - done → `submit_task`. Their own task (they set it for themselves, no agent leads it) becomes done at once;
+     a task someone else set goes to that person to accept;
+   - no longer needed → `cancel_task` — for a task they set, or as the owner or an admin. A task someone else set
+     on a member → `ask_about_task(kind: "decline")` with the reason: it closes the task and tells the author. Never `cancel_task`
+     for work that was done: it would count as not needed;
+   - the kind, importance or wording changes → `update_task` (`category`, `priority`, `due_date`) — the author,
+     the owner or an admin; the person doing it changes only `due_date`;
    - waiting on someone → `update_task(waiting_for, next_check_at)`;
    - strategy steps done by another person → company tasks (`create_task` with `why`, `done_criteria`,
-     `due_date`); the user's own steps → `create_task` with `org: "personal"`;
+     `due_date`) — not for a guest; the user's own steps → `create_task` with `org: "personal"`;
    - the item belongs in the other space → `move_to_org(task, org)`, one item at a time and only after an explicit
      "yes". Into a company it needs `why`, `done_criteria` and `due_date` — collect what is missing in this same
      conversation, that is what the move is for. Only the user can move an item; an agent cannot.

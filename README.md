@@ -37,6 +37,8 @@ this skill from a repository). Skip it at the start — setup.md explains when i
 - `skills/taskano/assigning.md` — the craft of handing work over: when to record, one task or a plan, who does it.
 - `skills/taskano/leading.md` — how agents lead people (the routine runner reads it on every run).
 - `skills/taskano/review.md` — reviewing your own tasks one at a time.
+- `skills/taskano/worker.md` — doing the work on you: your own tasks, handing them in, asking about them.
+- `skills/taskano/secretary.md` — being alongside the user in any work: how much room to take, what never to do.
 - `routine-prompt.md` — the prompt for the cloud routine.
 
 Minimum Taskano server version: 0.1.0 (`get_capabilities`).

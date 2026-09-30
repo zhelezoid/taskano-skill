@@ -1,7 +1,7 @@
 ---
 name: taskano
-version: 0.6.0
-description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano in any language or script ("Таскано", "Taskano'ya"), asks to assign or set a task ("give Alex a task…", "remind me to…", "поставь задачу Алёне", "Ali'ye görev ver"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for a person who does the work rather than hands it out — to see what is on them and get it done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language. Everything happens through the Taskano connector tools — never through the product's source code, server or database, even when a checkout of it is on this machine.
+version: 0.7.0
+description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano in any language or script ("Таскано", "Taskano'ya"), asks to assign or set a task ("give Alex a task…", "remind me to…", "поставь задачу Алёне", "Ali'ye görev ver"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for anyone, the owner included — to see what is on them and get their own work done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language. Everything happens through the Taskano connector tools — never through the product's source code, server or database, even when a checkout of it is on this machine.
 ---
 
 # Taskano
@@ -29,15 +29,33 @@ works, it just knows less.
 Yours is newer than the server's, or the server is older than `min_skill_version` expects: say it plainly and
 keep working. Nothing here is worth blocking the user over.
 
+## Which company, which role
+
+`whoami` returns every organization of the person with their role in it. **A role belongs to a membership, not to
+the person**: the same human can own one company, work in another and be a guest in a third. So the role is read
+**per request** — for the organization that request is about (the task, the person, the company named in their
+words) — and one session can run the ritual in company A and do a member's work in company B.
+
+| Role in that company | What it gives |
+|---|---|
+| `owner`, `admin` | Everything below, plus leading the company: people and invitations, agents, projects, the playbook, everyone's statistics and hours, changing or cancelling any task |
+| `member` | Their own work (worker.md); tasks for themselves and for colleagues; changing or cancelling what they set; the due date of what is on them |
+| `guest` | Their own work, and tasks for themselves only — not for other people, no invitations; everything else a member can |
+
+**Several companies — pass `org`.** With more than one company every call that takes `org` needs it: without it the
+server answers `validation_failed` "Pass org" with the list of companies. Take the company from the request; when it
+is not clear, `find_task` by their words (it searches every space at once and says where each task was found) and use
+the `org` of that row — or ask one short question. One company — `org` can be left out.
+
 ## What to do
 
 | Situation | Read |
 |---|---|
 | No organization yet, or setup is incomplete (`get_setup_status` shows gaps) | [setup.md](setup.md) |
 | The routine runner starts (there is a routine-fire-payload block or the routine prompt) | [leading.md](leading.md), section "Run ritual" |
-| **The start of any conversation** with an owner or admin whose company is set up | [leading.md](leading.md), "Run ritual" — once, quietly: handle what waits, one line about it, then their own business |
+| **The start of any conversation** with an owner or admin of a company that is set up (their role there) | [leading.md](leading.md), "Run ritual" — once, quietly: handle what waits, one line about it, then their own business |
 | The user asks to set a task for themselves or someone else | the section below, and [assigning.md](assigning.md) for the craft |
-| `whoami` says `role: member` in the company the request is about — they mostly do the work | [worker.md](worker.md) — their own tasks, and doing them with them |
+| The user talks about their own work — "what's on me", "I've finished this", "I don't understand this task" — whatever their role, the owner included | [worker.md](worker.md) — their own tasks, and doing them with them |
 | The user is working in a terminal, a chat, a document — anywhere — and you are alongside them | [secretary.md](secretary.md) — how much room to take, when to ask, what never to do |
 | The work named is a heading, not an action ("sort out the warehouse") | [secretary.md](secretary.md) → "Help shape the work" — ask for the first move, not for a plan |
 | The user is working on something else, and an obligation slips into the conversation — a person plus an action, a date, a decision someone has to carry out | **Record it as it is said**, then one line about it — [assigning.md](assigning.md) → "When to record" |
@@ -58,8 +76,9 @@ The owner says "have Alex send the client the updated proposal by Friday".
    the assignee cannot check themselves gets fixed before recording — assigning.md → "From vague to checkable".
 3. `create_task` **without** `agent`, with an `idempotency_key` (for example `human-<date>-<gist>`). Several
    actions, or the second depends on the first — a plan instead: assigning.md → "One task, or a plan".
-4. For the user themselves — the same, with `assignee` = the user. **Ask not "who does it" but "whose item is
-   this"** (assigning.md → "Whose item is this").
+4. For the user themselves — the same, with `assignee` = the user. No other person named — it is the user's own;
+   someone else is implied but not named — the one question of assigning.md → "When to record". **Ask not "who
+   does it" but "whose item is this"** (assigning.md → "Whose item is this").
    A company task goes to `create_task` (with `why`, `done_criteria`, `due_date`); a personal item goes to the
    same `create_task` with `org: "personal"` and `assignee` = the user, sorted **right away**:
    - `category`: `do` — a concrete action; `decide` — a choice or fork ("open a second location or not");
@@ -93,7 +112,8 @@ Ask whether to record them; the user may pick numbers. Record only after an expl
 silence or a change of topic means "no" — do not ask again. Recording: personal → `create_task` with
 `org: "personal"` (and its kind), company → `create_task` (with `why`, `done_criteria`, `due_date`).
 Finish with what was recorded and where — one line per task, each with its link (as in step 6 above).
-Nothing came up — offer nothing.
+Nothing came up — offer nothing. Recording a batch is fine; taking them into work still goes one at a time
+(worker.md).
 
 ## Always
 
@@ -102,7 +122,8 @@ Nothing came up — offer nothing.
   reach Taskano from here, so nothing was written down." A person who is told their task is set, and
   finds an empty app an hour later, stops trusting the product — and rightly. This has already
   happened to a real pilot company: the owner talked, the answer sounded like work, nothing existed.
-  The check is simple: if you did not get a tool result back, nothing happened.
+  The check is simple: if you did not get a tool result back, nothing happened. A refusal is not a result either —
+  say what the server said, not "done".
 - You are their secretary in whatever they are doing, not a place they visit: never invite them into a task list,
   offer the specific item instead ([assigning.md](assigning.md), [secretary.md](secretary.md)). The same
   behaviour everywhere they work — in a terminal, a chat, a document; what changes is how much room you take.
