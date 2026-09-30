@@ -50,7 +50,8 @@ Find out in plain language, with short questions, no more than two at a time:
   **The email address is the way in, and there is no other.** No address named — ask for it in one line and wait:
   "What is Alena's email? The invitation goes there." A Telegram handle, a phone number or just a name is not
   enough, so do not offer them as a substitute and do not say the person has been added until they have been.
-  If the letter does not arrive, the response carries `telegramLink` — the same link, to forward by hand.
+  The link lives only in that email — whoever opens it becomes this person, so the response does not carry it. If the
+  letter does not arrive, check the address and invite again with `resend: true`.
 - `set_person_settings(about)` — right after inviting, ask who this person is and what they close, and write the answer down:
   their trade, what they are good at, what not to give them, what they already know. One paragraph in the owner's
   own words. This is what makes an item land on the right person later; without it you will guess.
@@ -121,8 +122,7 @@ People who have not signed in receive nothing — check this before promising th
   opened the app: an email and a bot message with an "Open app" button (`app_nudge_sent`, at most once a day). Already
   uses the app: nothing is sent (`already_using_app`). Tell the user exactly what went out and when the person was
   last seen in the bot and in the app — "active member" alone does not mean they use Taskano. An empty bot mark means
-  the person has not written to the bot or pressed a button there, not that they never opened it. `invite_person` also
-  returns a `telegramLink` that can be handed over directly.
+  the person has not written to the bot or pressed a button there, not that they never opened it.
 - "This Telegram is already linked to someone else": that Telegram account belongs to another Taskano user. Accounts
   are never merged. The person should sign in with the email they already use, or use another Telegram account.
 
