@@ -1,0 +1,14 @@
+{
+  "name": "taskano",
+  "displayName": "Taskano",
+  "version": "0.7.1",
+  "description": "Assign work to your team from Claude. People get one clear task at a time in Telegram, in their own language; Claude follows up, answers questions and reviews results. Bundles the Taskano skill and the Taskano connector (https://taskano.app/mcp).",
+  "author": {
+    "name": "Taskano",
+    "email": "support@taskano.app",
+    "url": "https://taskano.app"
+  },
+  "homepage": "https://taskano.app/docs",
+  "repository": "https://github.com/zhelezoid/taskano-skill",
+  "keywords": ["tasks", "team", "telegram", "delegation", "project-management", "time-tracking"]
+}

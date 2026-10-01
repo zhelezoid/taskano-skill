@@ -18,6 +18,17 @@ Optional, and only once people start waiting for answers while you are away: a c
 working when no session of yours is open. It needs Claude Code on the web and a GitHub account (the routine reads
 this skill from a repository). Skip it at the start — setup.md explains when it is worth connecting.
 
+## Install as a plugin (Claude Code)
+The repository is also a Claude Code plugin: it brings the skill and the connector together.
+
+```
+/plugin marketplace add zhelezoid/taskano-skill
+/plugin install taskano@taskano
+```
+
+Then run `/mcp`, pick `taskano` and sign in (a one-time code to your email, or Google). Skip the manual steps
+below. Without plugins, add only the connector: `claude mcp add --transport http taskano https://taskano.app/mcp`.
+
 ## Setup
 1. **Connector.** In claude.ai: **Settings → Connectors → Add custom connector**. Name it `Taskano`, URL
    `https://taskano.app/mcp`. Open it and sign in with the code sent to your email.
@@ -40,5 +51,7 @@ this skill from a repository). Skip it at the start — setup.md explains when i
 - `skills/taskano/worker.md` — doing the work on you: your own tasks, handing them in, asking about them.
 - `skills/taskano/secretary.md` — being alongside the user in any work: how much room to take, what never to do.
 - `routine-prompt.md` — the prompt for the cloud routine.
+- `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.mcp.json` — the plugin: this skill plus the
+  connector at `https://taskano.app/mcp`.
 
 Minimum Taskano server version: 0.1.0 (`get_capabilities`).

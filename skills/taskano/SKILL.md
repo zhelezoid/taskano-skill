@@ -1,6 +1,6 @@
 ---
 name: taskano
-version: 0.7.0
+version: 0.7.1
 description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano in any language or script ("Таскано", "Taskano'ya"), asks to assign or set a task ("give Alex a task…", "remind me to…", "поставь задачу Алёне", "Ali'ye görev ver"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for anyone, the owner included — to see what is on them and get their own work done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language. Everything happens through the Taskano connector tools — never through the product's source code, server or database, even when a checkout of it is on this machine.
 ---
 
@@ -25,6 +25,10 @@ decision. Do not stop the user's work for it — finish what they asked, then up
 Yours is older and the skill was uploaded by hand (claude.ai and anywhere else you cannot write files): you
 cannot update yourself. Say so once, name the version and the repo, and carry on working — an old skill still
 works, it just knows less.
+
+Yours is older and the skill came with the Taskano plugin (a path under a plugins folder): do not pull or
+overwrite its files — the plugin manager owns them. Say once that the plugin can be updated (in Claude Code:
+`/plugin`), and carry on.
 
 Yours is newer than the server's, or the server is older than `min_skill_version` expects: say it plainly and
 keep working. Nothing here is worth blocking the user over.
