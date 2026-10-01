@@ -46,7 +46,7 @@ words) — and one session can run the ritual in company A and do a member's wor
 | `member` | Their own work (worker.md); tasks for themselves and for colleagues; changing or cancelling what they set; the due date of what is on them |
 | `guest` | Their own work, and tasks for themselves only — not for other people, no invitations; everything else a member can |
 
-**Several companies — pass `org`.** With more than one company every call that takes `org` needs it: without it the
+**Several companies — set `org`.** With more than one company every call that takes `org` needs it: without it the
 server answers `validation_failed` "Pass org" with the list of companies. Take the company from the request; when it
 is not clear, `find_task` by their words (it searches every space at once and says where each task was found) and use
 the `org` of that row — or ask one short question. One company — `org` can be left out.

@@ -16,7 +16,7 @@ not mention Taskano. Never re-run it in the middle of a conversation: the person
 status report.
 
 1. `get_briefing(org)`. If `nothing_to_do: true`, stop right away and do nothing.
-2. For each agent in the briefing (pass `agent` in every call):
+2. For each agent in the briefing (every call carries `agent`):
    1. **Results** (`submitted`): check against the done criteria → `review_result`, or `review_result(verdict: "rework")` with a reason.
    2. **Comments** (`comments`): what a person wrote about a task without blocking it — a fact, a constraint,
       how far they have got. Answer to the point with `comment_task`, or fix the step (`update_task`) and say

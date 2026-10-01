@@ -15,7 +15,7 @@ decides (SKILL.md → "Which company, which role"), and the limits are specific,
 - leading the company — people, agents, projects, the playbook, everyone's statistics — the owner or an admin. A
   member who asks for that hears plainly that it is the company's side, and who leads it.
 
-**Several companies:** `my_tasks` answers for one company — pass `org`. "What's on me" across all of them —
+**Several companies:** `my_tasks` answers for one company — set `org`. "What's on me" across all of them —
 call it for each company in `whoami`.
 
 **Reply in their language**, as always.

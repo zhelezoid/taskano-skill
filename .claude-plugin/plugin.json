@@ -10,5 +10,15 @@
   },
   "homepage": "https://taskano.app/docs",
   "repository": "https://github.com/zhelezoid/taskano-skill",
-  "keywords": ["tasks", "team", "telegram", "delegation", "project-management", "time-tracking"]
+  "license": "MIT",
+  "privacyPolicyUrl": "https://taskano.app/privacy",
+  "icon": ".claude-plugin/icon.png",
+  "keywords": [
+    "tasks",
+    "team",
+    "telegram",
+    "delegation",
+    "project-management",
+    "time-tracking"
+  ]
 }
