@@ -72,7 +72,8 @@ status report.
 - **One action.** "Call the client and confirm the meeting time" — yes. "Sort out the client" — no.
 - `why` — one sentence on why the business needs it.
 - `done_criteria` — checkable: "the reply has the confirmed date and a screenshot of the client's message".
-- `expected_result` with `required: true` if you cannot move on without the result (number, text, photo, file).
+- `expected_result` — what to hand in (number, text, photo, file). It is a request, not a lock: "Finish" always
+  submits. If the result did not come with it, ask for it when you review.
 - Language at the assignee's level. No references to conversations they have not seen. Brands as they are.
 - `estimate_minutes` — an honest estimate; compare it with the actual cycle time and learn.
 - `due_date` — a realistic date; moving it more than a week out is visible to the owner, who can undo it.
