@@ -174,7 +174,8 @@ organization does not go in without it: `create_task` takes `source` — where i
 work chat, a ticket, an email), a title a human would recognise, and a `quote` with the words it is based on.
 From a conversation that is `source: { kind: "chat", title: "<what the talk was about, with the date>",
 quote: "<their own words>" }`. Without `source` the server refuses the task, and it is right to: a bare title
-makes the person ask what it grew out of.
+makes the person ask what it grew out of. A waiting (`kind: 'waiting'`) and an item of the personal space go in
+without it — do not ask the user for a source there.
 
 The quote is **their words, not your retelling** — the sentence that made this a task. One more source later
 (a ticket, a letter) — `add_source`.
