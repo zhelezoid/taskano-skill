@@ -1,6 +1,6 @@
 ---
 name: taskano
-version: 0.7.3
+version: 0.7.4
 description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano in any language or script ("Таскано", "Taskano'ya"), asks to assign or set a task ("give Alex a task…", "remind me to…", "поставь задачу Алёне", "Ali'ye görev ver"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for anyone, the owner included — to see what is on them and get their own work done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language. Everything happens through the Taskano connector tools — never through the product's source code, server or database, even when a checkout of it is on this machine.
 ---
 
@@ -57,6 +57,7 @@ the `org` of that row — or ask one short question. One company — `org` can b
 |---|---|
 | No organization yet, or setup is incomplete (`get_setup_status` shows gaps) | [setup.md](setup.md) |
 | The routine runner starts (there is a routine-fire-payload block or the routine prompt) | [leading.md](leading.md), section "Run ritual" |
+| The owner's check routine starts (its prompt names [owner-check.md](owner-check.md)) | [owner-check.md](owner-check.md) |
 | **The start of any conversation** with an owner or admin of a company that is set up (their role there) | [leading.md](leading.md), "Run ritual" — once, quietly: handle what waits, one line about it, then their own business |
 | The user asks to set a task for themselves or someone else | the section below, and [assigning.md](assigning.md) for the craft |
 | The user talks about their own work — "what's on me", "I've finished this", "I don't understand this task" — whatever their role, the owner included | [worker.md](worker.md) — their own tasks, and doing them with them |
