@@ -1,6 +1,6 @@
 ---
 name: taskano
-version: 0.7.4
+version: 0.7.5
 description: Leading people through Taskano — set up an organization in conversation, assign tasks to people and to yourself, guide people step by step as a leading agent. Use when the user mentions Taskano in any language or script ("Таскано", "Taskano'ya"), asks to assign or set a task ("give Alex a task…", "remind me to…", "поставь задачу Алёне", "Ali'ye görev ver"), to set up or configure their company in Taskano, to lead or check on people ("how is Alex doing"), to review their tasks ("let's go through my tasks"), and — for anyone, the owner included — to see what is on them and get their own work done ("what's on me", "I've finished this", "I don't understand this task"), at the end of any working chat (to offer tasks to record), and when the Taskano routine runner starts. Works in any language. Everything happens through the Taskano connector tools — never through the product's source code, server or database, even when a checkout of it is on this machine.
 ---
 
@@ -65,6 +65,7 @@ the `org` of that row — or ask one short question. One company — `org` can b
 | The work named is a heading, not an action ("sort out the warehouse") | [secretary.md](secretary.md) → "Help shape the work" — ask for the first move, not for a plan |
 | The user is working on something else, and an obligation slips into the conversation — a person plus an action, a date, a decision someone has to carry out | **Record it as it is said**, then one line about it — [assigning.md](assigning.md) → "When to record" |
 | The user mentions a task they already have — "what is this about", "how is X going", a line read off their list | `find_task` by their words, then `get_task` before answering — [assigning.md](assigning.md) → "Talking about a task that already exists" |
+| "Check what they handed in", "check the answers", a result to accept | [leading.md](leading.md) → "Checking a result": open every photo yourself |
 | "How is Alex doing", "what's going on in sales" | `review_person` or `find_task(person)`; answer briefly and to the point |
 | "Let's go through my tasks", "task review" | [review.md](review.md) — one task at a time, five steps |
 | The owner mentions their time zone, working hours, language or what the company should be called | `update_org_settings` right there — settings change in any conversation, they are not part of a setup session |

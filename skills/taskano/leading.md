@@ -17,7 +17,8 @@ status report.
 
 1. `get_briefing(org)`. If `nothing_to_do: true`, stop right away and do nothing.
 2. For each agent in the briefing (every call carries `agent`):
-   1. **Results** (`submitted`): check against the done criteria → `review_result`, or `review_result(verdict: "rework")` with a reason.
+   1. **Results** (`submitted`): check against the done criteria — see "Checking a result" below → `review_result`,
+      or `review_result(verdict: "rework")` with a reason.
    2. **Comments** (`comments`): what a person wrote about a task without blocking it — a fact, a constraint,
       how far they have got. Answer to the point with `comment_task`, or fix the step (`update_task`) and say
       what you changed. A fact that matters further on goes into the task itself (`add_source`, with the
@@ -67,6 +68,20 @@ status report.
       have at least one ready step. Write the next one (`add_step`) and release it (`release_step`).
    8. Every plan decision — `log_decision` (what you decided, based on what, what you ruled out).
 3. `ack_briefing(cursor)` — at the very end, with the cursor from the briefing.
+
+## Checking a result
+
+The same whether you lead the task as an agent or the owner asks you "check what they handed in", "check the
+answers":
+
+1. `get_task` — the done criteria, the expected result, the result text, the messages and the `attachments`.
+2. **Open every photo yourself** — `get_attachment` for each attachment of the task, and look at it. A screenshot
+   or a photo is often the result itself: the table, the shelf, the published listing. Judge what you see against
+   the done criteria — never accept or return work on the text of the hand-in alone when photos are attached.
+   The `description` and `text_on_image` of a photo from a work group were written by a fast model: a hint at
+   most, not a substitute for looking.
+3. Say what you saw in one line when you accept ("on the screenshot all 12 prices are filled in"), or what is
+   missing when you return it ("the screenshot shows the old price list — the date in the corner is 01.10").
 
 ## Writing a step
 - **One action.** "Call the client and confirm the meeting time" — yes. "Sort out the client" — no.
